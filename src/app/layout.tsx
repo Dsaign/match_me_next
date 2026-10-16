@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import NavBar from '@/components/NavBar';
 
 // meta
 export const metadata: Metadata = {
@@ -19,13 +21,16 @@ const geistMono = Geist_Mono({
 });
 
 // misc
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html
             lang="en"
             className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
         >
-            <body className="min-h-full flex flex-col">{children}</body>
+            <body className="min-h-full flex flex-col">
+                <NavBar />
+                {children}
+            </body>
         </html>
     );
 }
