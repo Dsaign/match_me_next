@@ -8,14 +8,19 @@ type InputLinkProps = {
     href: string;
     children: ReactNode;
     icon?: ReactNode | null;
+    className?: string;
 };
 
-export default function InputLink({ href, children, icon }: InputLinkProps) {
+export default function InputLink({
+    href,
+    children,
+    icon,
+    className,
+}: InputLinkProps) {
     const router = useRouter();
     return (
         <Button
-            className="gap-2"
-            variant="primary"
+            className={`gap-2 ${className ?? ''}`}
             onPress={() => router.push(href)}
         >
             {icon && <span className="inline-flex">{icon}</span>}
