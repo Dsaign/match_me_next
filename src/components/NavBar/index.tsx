@@ -32,7 +32,7 @@ export default function TopNav() {
                             href={href}
                             data-active={isActive}
                             aria-current={isActive ? 'page' : undefined}
-                            className="text.sm transition-colors hover:text-primary"
+                            className="text.sm transition-colors hover:text-primary data-[active=true]:text-amber-200"
                         >
                             {label}
                         </Link>
