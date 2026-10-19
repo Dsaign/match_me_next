@@ -1,6 +1,9 @@
+'use client';
+
 import ButtonLink from '@/components/ButtonLink';
 import Link from 'next/link';
 import { GiSelfLove } from 'react-icons/gi';
+import { usePathname } from 'next/navigation';
 
 const links = [
     // { label: 'Home', href: '/' },
@@ -10,6 +13,7 @@ const links = [
 ];
 
 export default function TopNav() {
+    const pathname = usePathname();
     return (
         <nav className="flex items-center justify-between px-6 py-4 bg-linear-to-r from-pink-400 via-red-400 to-pink-600">
             <Link href="/" className="flex justify-start text-xl font-bold">
@@ -18,16 +22,22 @@ export default function TopNav() {
                     <span className="text-gray-200">MatchMe</span>
                 </div>
             </Link>
-            <div className="flex justify-center gap-4 text-lg uppercase data-[active=true]:text-yellow-200">
-                {links.map(({ label, href }) => (
-                    <Link
-                        key={href}
-                        href={href}
-                        className="text.sm transition-colors hover:text-primary"
-                    >
-                        {label}
-                    </Link>
-                ))}
+            <div className="text-white flex justify-center gap-4 text-lg uppercase data-[active=true]:text-blue-200">
+                {links.map(({ label, href }) => {
+                    const isActive =
+                        pathname === href || pathname.startsWith(`${href}/`);
+                    return (
+                        <Link
+                            key={href}
+                            href={href}
+                            data-active={isActive}
+                            aria-current={isActive ? 'page' : undefined}
+                            className="text.sm transition-colors hover:text-primary"
+                        >
+                            {label}
+                        </Link>
+                    );
+                })}
             </div>
             <div className="flex justify-end items-right gap-4">
                 <ButtonLink
