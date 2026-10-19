@@ -6,11 +6,13 @@ import { GiSelfLove } from 'react-icons/gi';
 import { usePathname } from 'next/navigation';
 
 const links = [
-    // { label: 'Home', href: '/' },
     { label: 'Matches', href: '/matches' },
     { label: 'Lists', href: '/lists' },
     { label: 'Messages', href: '/messages' },
 ];
+
+const navButtonClassName =
+    'bg-transparent border-2 text-white transition-colors duration-300 hover:bg-pink-700';
 
 export default function TopNav() {
     const pathname = usePathname();
@@ -40,16 +42,10 @@ export default function TopNav() {
                 })}
             </div>
             <div className="flex justify-end items-right gap-4">
-                <ButtonLink
-                    href="/login"
-                    className="bg-transparent border-2 text-white transition-colors duration-300 hover:bg-pink-700"
-                >
+                <ButtonLink href="/login" className={navButtonClassName}>
                     Login
                 </ButtonLink>
-                <ButtonLink
-                    href="/register"
-                    className="bg-transparent border-2 text-white transition-colors duration-300 hover:bg-pink-700"
-                >
+                <ButtonLink href="/register" className={navButtonClassName}>
                     Register
                 </ButtonLink>
             </div>
